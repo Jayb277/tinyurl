@@ -1,24 +1,12 @@
 const express = require('express');
+const { shortenUrl, redirectUrl } = require('../controllers/urlController');
+
 const router = express.Router();
-const urlController = require('../controllers/urlController');
 
-// @route   POST /api/shorten
-// @desc    Create a short URL
-// @body    { originalUrl: string, customCode?: string }
-router.post('/shorten', urlController.shortenUrl);
+// POST /api/url/shorten - Create short URL
+router.post('/shorten', shortenUrl);
 
-// @route   GET /api/:shortCode
-// @desc    Redirect to original URL
-// @params  shortCode
-router.get('/:shortCode', urlController.redirectToUrl);
-
-// @route   GET /api/analytics/:shortCode
-// @desc    Get analytics for a short URL
-// @params  shortCode
-router.get('/analytics/:shortCode', urlController.getAnalytics);
-
-// @route   GET /api/urls/all
-// @desc    Get all URLs (for testing)
-router.get('/urls/all', urlController.getAllUrls);
+// GET /:shortCode - Redirect to original URL
+router.get('/:shortCode', redirectUrl);
 
 module.exports = router;
