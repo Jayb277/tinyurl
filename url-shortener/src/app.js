@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
-app.use(express.json()); // Parse JSON bodies
+app.use(express.json());
 
 // Routes
 app.use('/api', urlRoutes);
@@ -25,9 +25,8 @@ app.get('/', (req, res) => {
 });
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`🚀 URL Shortener API running on http://localhost:${PORT}`);
-  console.log(`📚 API Documentation available at http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 URL Shortener API running on port ${PORT}`);
 });
 
 module.exports = app;
